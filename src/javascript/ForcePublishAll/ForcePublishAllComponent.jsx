@@ -33,7 +33,7 @@ export const ForcePublishAllActionComponent = ({path, render: Render, loading: L
         return (Loading && <Loading {...others}/>) || false;
     }
 
-    const hanleClose = () => {
+    const handleConfirmation = () => {
         mutation({
             variables: {
                 path: path
@@ -53,10 +53,12 @@ export const ForcePublishAllActionComponent = ({path, render: Render, loading: L
                 componentRenderer.render('forcePublishAllDialog', ForcePublishAll, {
                         isOpen: true,
                         path: res.node.path,
-                        onClose: () => {
-                            hanleClose();
+                        onConfirmation: () => {
+                            console.log('%c Force Publish will be triggered.', 'color: #3c8cba');
+                            handleConfirmation();
                         },
-                        onExit: () => {
+                        doCancel: () => {
+                            console.log('%c Cancel operation is triggered.', 'color: #3c8cba');
                             componentRenderer.destroy('forcePublishAllDialog');
                         }
                     }

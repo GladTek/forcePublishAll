@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {Dialog, DialogActions, DialogContent, DialogTitle, FormHelperText} from '@material-ui/core';
 import {Button} from '@jahia/moonstone';
 
-const ForcePublishAll = ({onClose, onExit, isOpen, path}) => {
+const ForcePublishAll = ({onConfirmation, doCancel, isOpen, path}) => {
     return (
-            <Dialog fullWidth open={isOpen} aria-labelledby="form-dialog-title" data-cm-role="export-options" onExited={onExit} onClose={onExit}>
+            <Dialog fullWidth open={isOpen} aria-labelledby="form-dialog-title" data-cm-role="export-options" onExited={doCancel} onClose={doCancel}>
                 <DialogTitle>
                     Force Publish All
                 </DialogTitle>
@@ -15,14 +15,14 @@ const ForcePublishAll = ({onClose, onExit, isOpen, path}) => {
                     </FormHelperText>
                 </DialogContent>
                 <DialogActions>
-                    <Button size="big" label="Cancel" onClick={onExit}/>
+                    <Button size="big" label="Cancel" onClick={doCancel}/>
                     <Button
                         size="big"
                         color="accent"
                         data-cm-role="export-button"
                         label="Force Publish"
                         onClick={() => {
-                            onClose();
+                            onConfirmation();
                         }}
                     />
                 </DialogActions>
